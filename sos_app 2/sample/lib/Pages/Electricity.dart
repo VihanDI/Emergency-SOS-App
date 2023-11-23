@@ -16,7 +16,7 @@ class ElectricityPage extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: const Text(
-          'EMERGENCY SOS Electricity',
+          'Electricity',
           style: TextStyle(fontSize: 25, color: Colors.white),
         ),
         centerTitle: true,

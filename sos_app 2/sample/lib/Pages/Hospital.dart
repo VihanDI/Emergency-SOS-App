@@ -16,7 +16,7 @@ class HospitalPage extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: const Text(
-          'EMERGENCY SOS Hospital',
+          'Hospital',
           style: TextStyle(fontSize: 25, color: Colors.white),
         ),
         centerTitle: true,

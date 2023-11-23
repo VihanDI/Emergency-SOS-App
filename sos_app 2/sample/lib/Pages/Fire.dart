@@ -16,7 +16,7 @@ class FirePage extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: const Text(
-          'EMERGENCY SOS ',
+          'Fire ',
           style: TextStyle(fontSize: 25, color: Colors.white),
         ),
         centerTitle: true,

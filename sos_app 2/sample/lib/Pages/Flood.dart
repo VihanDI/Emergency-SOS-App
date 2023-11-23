@@ -3,7 +3,7 @@ import 'package:url_launcher/url_launcher.dart';
 
 class FloodPage extends StatelessWidget {
   void _makeEmergencyCall() async {
-    const url = 'tel:1990'; // Change the number to '1990'
+    const url = 'tel:117'; // Change the number to '1990'
     if (await canLaunch(url)) {
       await launch(url);
     } else {
@@ -16,7 +16,7 @@ class FloodPage extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: const Text(
-          'EMERGENCY SOS Flood',
+          'Flood',
           style: TextStyle(fontSize: 25, color: Colors.white),
         ),
         centerTitle: true,

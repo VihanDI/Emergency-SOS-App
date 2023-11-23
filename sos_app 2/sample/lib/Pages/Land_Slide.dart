@@ -16,7 +16,7 @@ class LandSlidePage extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: const Text(
-          'EMERGENCY SOS Land Slide',
+          ' Land Slide',
           style: TextStyle(fontSize: 25, color: Colors.white),
         ),
         centerTitle: true,
