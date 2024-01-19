@@ -73,7 +73,7 @@ class HomeScreen extends StatelessWidget {
               Text(
                 "${currentDate.day}  $month  ${currentDate.year}",
                 style:
-                    const TextStyle(fontSize: 20, fontWeight: FontWeight.w500),
+                    const TextStyle(fontSize: 25, fontWeight: FontWeight.w400),
               ),
               const RoundedContainerTypeOne(height: 168.1),
               const RoundedContainerTypeTwo(height: 90.05),
