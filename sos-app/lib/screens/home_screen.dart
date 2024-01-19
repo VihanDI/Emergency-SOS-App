@@ -2,7 +2,6 @@ import 'package:curved_navigation_bar/curved_navigation_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_app/widgets/app_bar_default.dart';
 import 'disaster_category_screen.dart';
-import '../widgets/app_bar.dart';
 import './login_screeen.dart';
 import './add_number_screen.dart';
 import './emergency_contact_screen.dart';
@@ -174,10 +173,27 @@ class RoundedContainerTypeOne extends StatelessWidget {
                 decoration: BoxDecoration(
                   color: const Color(0xFFFF6B6B),
                   borderRadius: BorderRadius.circular(0.0),
-                  image: DecorationImage(
-                    image: NetworkImage(url),
-                    fit: BoxFit.cover,
-                  ),
+                ),
+                child: Image.network(
+                  url,
+                  fit: BoxFit.cover,
+                  loadingBuilder: (BuildContext context, Widget child,
+                      ImageChunkEvent? loadingProgress) {
+                    if (loadingProgress == null) {
+                      // Image is fully loaded
+                      return child;
+                    } else {
+                      // Display a loading indicator while the image is loading
+                      return Center(
+                        child: CircularProgressIndicator(
+                          value: loadingProgress.expectedTotalBytes != null
+                              ? loadingProgress.cumulativeBytesLoaded /
+                                  (loadingProgress.expectedTotalBytes ?? 1)
+                              : null,
+                        ),
+                      );
+                    }
+                  },
                 ),
               );
             },
