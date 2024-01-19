@@ -1,18 +1,65 @@
+import 'package:curved_navigation_bar/curved_navigation_bar.dart';
 import 'package:flutter/material.dart';
 import 'disaster_category_screen.dart';
 import '../widgets/app_bar.dart';
 import './login_screeen.dart';
 import './add_number_screen.dart';
 import './emergency_contact_screen.dart';
+import 'package:carousel_slider/carousel_slider.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
+    DateTime currentDate = DateTime.now();
+    String month = "Month";
+
+    switch ((currentDate.month)) {
+      case 1:
+        month = "January";
+        break;
+      case 2:
+        month = "February";
+        break;
+      case 3:
+        month = "March";
+        break;
+      case 4:
+        month = "April";
+        break;
+      case 5:
+        month = "May";
+        break;
+      case 6:
+        month = "June";
+        break;
+      case 7:
+        month = "July";
+        break;
+      case 8:
+        month = "August";
+        break;
+      case 9:
+        month = "September";
+        break;
+      case 10:
+        month = "October";
+        break;
+      case 11:
+        month = "November";
+        break;
+      case 12:
+        month = "December";
+        break;
+      default:
+        print('Unknown Month');
+    }
+
     return MaterialApp(
         debugShowCheckedModeBanner: false,
         home: Scaffold(
+          backgroundColor: Colors.grey[200],
           appBar: MyAppBar(
             iconType: Icons.logout_outlined,
             onPressed: () {
@@ -23,24 +70,41 @@ class HomeScreen extends StatelessWidget {
               child: Column(
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
+              Text(
+                "${currentDate.day}  $month  ${currentDate.year}",
+                style:
+                    const TextStyle(fontSize: 20, fontWeight: FontWeight.w500),
+              ),
               const RoundedContainerTypeOne(height: 168.1),
               const RoundedContainerTypeTwo(height: 90.05),
               const RoundedContainerTypeThree(height: 90.05),
-              Row(
+              const Row(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
-                  CircularIconButton(
-                    icon: Icons.call,
-                    size: 60,
-                    iconSize: 35,
-                    onPressed: () {
-                      navigateToPage(context, const DisasterCategoryScreen());
-                    },
-                  ),
+                  // CircularIconButton(
+                  //   icon: Icons.call,
+                  //   size: 60,
+                  //   iconSize: 35,
+                  //   onPressed: () {
+                  //     navigateToPage(context, const DisasterCategoryScreen());
+                  //   },
+                  // ),
                 ],
               )
             ],
           )),
+          bottomNavigationBar: CurvedNavigationBar(
+              backgroundColor: Colors.grey.shade200,
+              color: const Color(0xFFFF4545),
+              animationDuration: const Duration(milliseconds: 300),
+              onTap: (index) {
+                navigateToPage(context, const DisasterCategoryScreen());
+              },
+              items: const [
+                Icon(
+                  Icons.call,
+                ),
+              ]),
         ));
   }
 }
@@ -52,11 +116,17 @@ class RoundedContainerTypeOne extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final List<String> images = [
+      'https://118.pubsec.gov.lk/img/118-social-post.jpg',
+      'https://pbs.twimg.com/media/Dxb47ndVAAI_yjh.jpg',
+      'https://th-i.thgim.com/public/news/international/nu7ncy/article66674433.ece/alternates/LANDSCAPE_1200/Suwaseriya.jpg',
+    ];
+
     return Container(
       width: 344,
       height: height, // Adjust the height as needed
       decoration: BoxDecoration(
-        color: Colors.blue, // Set the background color
+        color: const Color(0xFFFF6B6B), // Set the background color
         borderRadius: BorderRadius.circular(
             10.0), // Set the border radius for the outer container
         boxShadow: [
@@ -69,81 +139,33 @@ class RoundedContainerTypeOne extends StatelessWidget {
           ),
         ],
       ),
-      child: Row(
-        children: [
-          Expanded(
-            flex: 2, // 75% width
-            child: Container(
-              decoration: const BoxDecoration(
-                color: Color(0xFFFF6B6B), // Set the color for the left column
-                borderRadius: BorderRadius.only(
-                  topLeft: Radius.circular(
-                      10.0), // Set rounded corners for the top-left
-                  bottomLeft: Radius.circular(
-                      10.0), // Set rounded corners for the bottom-left
-                ),
-              ),
-              child: const Center(
-                  child: Column(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                children: [
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                    children: [
-                      Text(
-                        "Colombo",
-                        style: TextStyle(
-                            fontSize: 22, fontWeight: FontWeight.w400),
-                      ),
-                      Icon(Icons.thunderstorm_outlined)
-                    ],
+      child: CarouselSlider(
+        options: CarouselOptions(
+          autoPlay: true,
+          aspectRatio: 16 / 9,
+          autoPlayCurve: Curves.fastOutSlowIn,
+          autoPlayAnimationDuration: const Duration(milliseconds: 800),
+          enableInfiniteScroll: true,
+          viewportFraction: 1.0,
+        ),
+        items: images.map((String url) {
+          return Builder(
+            builder: (BuildContext context) {
+              return Container(
+                width: MediaQuery.of(context).size.width,
+                margin: const EdgeInsets.symmetric(horizontal: 0.0),
+                decoration: BoxDecoration(
+                  color: const Color(0xFFFF6B6B),
+                  borderRadius: BorderRadius.circular(0.0),
+                  image: DecorationImage(
+                    image: NetworkImage(url),
+                    fit: BoxFit.cover,
                   ),
-                  Text(
-                    "23 October 2023",
-                    style: TextStyle(fontSize: 20, fontWeight: FontWeight.w300),
-                  ),
-                  Text(
-                    "Monday",
-                    style: TextStyle(fontSize: 20, fontWeight: FontWeight.w300),
-                  )
-                ],
-              )),
-            ),
-          ),
-          Expanded(
-            flex: 1, // 25% width
-            child: Container(
-              decoration: const BoxDecoration(
-                color: Color(0xFFFFC0C0), // Set the color for the right column
-                borderRadius: BorderRadius.only(
-                  topRight: Radius.circular(
-                      10.0), // Set rounded corners for the top-right
-                  bottomRight: Radius.circular(
-                      10.0), // Set rounded corners for the bottom-right
                 ),
-              ),
-              child: const Center(
-                  child: Center(
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                  children: [
-                    Icon(Icons.error_outline),
-                    Text(
-                      "Alert Level",
-                      style:
-                          TextStyle(fontSize: 20, fontWeight: FontWeight.w400),
-                    ),
-                    Text(
-                      "High",
-                      style:
-                          TextStyle(fontSize: 20, fontWeight: FontWeight.w300),
-                    )
-                  ],
-                ),
-              )),
-            ),
-          ),
-        ],
+              );
+            },
+          );
+        }).toList(),
       ),
     );
   }
@@ -160,7 +182,7 @@ class RoundedContainerTypeTwo extends StatelessWidget {
       width: 344,
       height: height, // Adjust the height as needed
       decoration: BoxDecoration(
-        color: Colors.blue, // Set the background color
+        color: const Color(0xFFFF6B6B), // Set the background color
         borderRadius: BorderRadius.circular(
             10.0), // Set the border radius for the outer container
         boxShadow: [

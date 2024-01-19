@@ -10,33 +10,34 @@ class DisasterCategoryScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: MyAppBar(
-          iconType: Icons.arrow_back,
-          onPressed: () {
-            navigateToPage(context, const HomeScreen());
+      backgroundColor: Colors.grey[200],
+      appBar: MyAppBar(
+        iconType: Icons.arrow_back,
+        onPressed: () {
+          navigateToPage(context, const HomeScreen());
+        },
+      ),
+      body: Padding(
+        padding: const EdgeInsets.all(16.0),
+        child: GridView.builder(
+          gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+            crossAxisCount: 2, // Automatically determine the number of columns
+            crossAxisSpacing: 16.0,
+            mainAxisSpacing: 16.0,
+            childAspectRatio:
+                1.0, // Adjust the aspect ratio based on your design
+          ),
+          itemCount: data.length,
+          itemBuilder: (context, index) {
+            return GridItem(
+              name: data[index]['name'],
+              icon: data[index]['icon'],
+              telNumber: data[index]['telNumber'],
+            );
           },
         ),
-        body: Padding(
-          padding: const EdgeInsets.all(16.0),
-          child: GridView.builder(
-            gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-              crossAxisCount:
-                  2, // Automatically determine the number of columns
-              crossAxisSpacing: 16.0,
-              mainAxisSpacing: 16.0,
-              childAspectRatio:
-                  1.0, // Adjust the aspect ratio based on your design
-            ),
-            itemCount: data.length,
-            itemBuilder: (context, index) {
-              return GridItem(
-                name: data[index]['name'],
-                icon: data[index]['icon'],
-                telNumber: data[index]['telNumber'],
-              );
-            },
-          ),
-        ));
+      ),
+    );
   }
 }
 

@@ -10,6 +10,7 @@ class SignUpScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       home: Scaffold(
+        backgroundColor: Colors.grey[200],
         appBar: const MyAppBarDefault(),
         body: SingleChildScrollView(
           child: Padding(

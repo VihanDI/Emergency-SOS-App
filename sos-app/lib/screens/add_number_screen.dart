@@ -9,6 +9,7 @@ class AddNumberScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       home: Scaffold(
+        backgroundColor: Colors.grey[200],
         appBar: MyAppBar(
           iconType: Icons.arrow_back,
           onPressed: () {

@@ -9,6 +9,7 @@ class EmergencyContactScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+        backgroundColor: Colors.grey[200],
         appBar: MyAppBar(
           iconType: Icons.arrow_back,
           onPressed: () {
