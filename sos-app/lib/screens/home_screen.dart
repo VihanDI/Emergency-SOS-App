@@ -1,6 +1,7 @@
 import 'package:curved_navigation_bar/curved_navigation_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_app/widgets/app_bar_default.dart';
+import 'package:flutter_app/widgets/bottom_nav_bar.dart';
 import 'disaster_category_screen.dart';
 import './login_screeen.dart';
 import './add_number_screen.dart';
@@ -93,34 +94,35 @@ class HomeScreen extends StatelessWidget {
               )
             ],
           )),
-          bottomNavigationBar: CurvedNavigationBar(
-              backgroundColor: Colors.grey.shade200,
-              color: const Color(0xFFFF4545),
-              animationDuration: const Duration(milliseconds: 300),
-              onTap: (index) {
-                switch (index) {
-                  case 0:
-                    navigateToPage(context, const HomeScreen());
-                    break;
-                  case 1:
-                    navigateToPage(context, const DisasterCategoryScreen());
-                    break;
-                  case 2:
-                    _showOptionsPopup(context);
-                    break;
-                }
-              },
-              items: const [
-                Icon(
-                  Icons.home,
-                ),
-                Icon(
-                  Icons.call,
-                ),
-                Icon(
-                  Icons.logout,
-                ),
-              ]),
+          bottomNavigationBar: const MyNavBar(),
+          // bottomNavigationBar: CurvedNavigationBar(
+          //     backgroundColor: Colors.grey.shade200,
+          //     color: const Color(0xFFFF4545),
+          //     animationDuration: const Duration(milliseconds: 300),
+          //     onTap: (index) {
+          //       switch (index) {
+          //         case 0:
+          //           navigateToPage(context, const HomeScreen());
+          //           break;
+          //         case 1:
+          //           navigateToPage(context, const DisasterCategoryScreen());
+          //           break;
+          //         case 2:
+          //           _showOptionsPopup(context);
+          //           break;
+          //       }
+          //     },
+          //     items: const [
+          //       Icon(
+          //         Icons.home,
+          //       ),
+          //       Icon(
+          //         Icons.call,
+          //       ),
+          //       Icon(
+          //         Icons.logout,
+          //       ),
+          //     ]),
         ));
   }
 }
