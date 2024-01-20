@@ -1,8 +1,6 @@
-import 'package:curved_navigation_bar/curved_navigation_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_app/widgets/app_bar_default.dart';
 import 'package:flutter_app/widgets/bottom_nav_bar.dart';
-import 'disaster_category_screen.dart';
 import './login_screeen.dart';
 import './add_number_screen.dart';
 import './emergency_contact_screen.dart';
