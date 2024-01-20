@@ -28,9 +28,9 @@ class EmergencyContactScreen extends StatelessWidget {
             subtitle: Text(contact['relation']),
             trailing: IconButton(
               icon: const Icon(Icons.phone),
-              onPressed: () {},
+              // onPressed: () => launch("tel://$toString()(contact['number'])"),
+              onPressed: () => callNumber(contact['number']),
             ),
-            onTap: () {},
           );
         },
       ),
@@ -114,4 +114,8 @@ void navigateToPage(BuildContext context, Widget page) {
     context,
     MaterialPageRoute(builder: (context) => page),
   );
+}
+
+void callNumber(String number) {
+  launch("tel://$number");
 }
