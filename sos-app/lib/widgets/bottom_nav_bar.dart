@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:curved_navigation_bar/curved_navigation_bar.dart';
+import 'package:flutter_app/auth_gate.dart';
 import 'package:flutter_app/screens/disaster_category_screen.dart';
 import 'package:flutter_app/screens/home_screen.dart';
 import 'package:flutter_app/screens/login_screeen.dart';
+import 'package:flutter_app/screens/sign_out_screen.dart';
 
 class MyNavBar extends StatelessWidget implements PreferredSizeWidget {
   const MyNavBar({super.key});
@@ -56,7 +58,7 @@ Future<void> _showOptionsPopup(BuildContext context) async {
           TextButton(
             onPressed: () {
               Navigator.pop(context); // Close the popup
-              navigateToPage(context, const LoginScreen());
+              navigateToPage(context, const SignOut());
             },
             child: const Text('Yes'),
           ),
