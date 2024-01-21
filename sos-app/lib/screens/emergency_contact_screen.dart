@@ -9,33 +9,32 @@ class EmergencyContactScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        backgroundColor: Colors.grey[200],
-        appBar: MyAppBar(
-          iconType: Icons.arrow_back,
-          onPressed: () {
-            navigateToPage(context, const HomeScreen());
-          },
-        ),
-        body: Padding(
-          padding: const EdgeInsets.all(16.0),
-          child: GridView.builder(
-            gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-              crossAxisCount:
-                  1, // Automatically determine the number of columns
-              crossAxisSpacing: 16.0,
-              mainAxisSpacing: 16.0,
-              childAspectRatio:
-                  6.0, // Adjust the aspect ratio based on your design
+      backgroundColor: Colors.grey[200],
+      appBar: MyAppBar(
+        iconType: Icons.arrow_back,
+        onPressed: () {
+          navigateToPage(context, const HomeScreen());
+        },
+      ),
+      body: ListView.builder(
+        itemCount: data.length,
+        itemBuilder: (context, index) {
+          Map<String, dynamic> contact = data[index];
+          return ListTile(
+            title: Text(
+              contact['name'],
+              style: const TextStyle(fontSize: 16, color: Colors.black),
             ),
-            itemCount: data.length,
-            itemBuilder: (context, index) {
-              return GridItem(
-                relation: data[index]['relation'],
-                number: data[index]['number'],
-              );
-            },
-          ),
-        ));
+            subtitle: Text(contact['relation']),
+            trailing: IconButton(
+              icon: const Icon(Icons.phone),
+              // onPressed: () => launch("tel://$toString()(contact['number'])"),
+              onPressed: () => callNumber(contact['number']),
+            ),
+          );
+        },
+      ),
+    );
   }
 }
 
@@ -93,21 +92,21 @@ List<Map<String, dynamic>> data = [
   {'name': 'Tom Black', 'relation': 'Father', 'number': '077 1234567'},
   {'name': 'Anne Fox', 'relation': 'Mother', 'number': '070 7654321'},
   {
-    'name': 'Tom Black',
+    'name': 'James Silver',
     'relation': 'Boarding place uncle',
     'number': '070 7654321'
   },
   {
-    'name': 'Anne Fox',
+    'name': 'Mary Grace',
     'relation': 'Boarding place aunty',
     'number': '070 7654321'
   },
-  {'name': 'Anne Fox', 'relation': 'Mother', 'number': '070 7654321'},
-  {'name': 'Anne Fox', 'relation': 'Mother', 'number': '070 7654321'},
-  {'name': 'Anne Fox', 'relation': 'Mother', 'number': '070 7654321'},
-  {'name': 'Anne Fox', 'relation': 'Mother', 'number': '070 7654321'},
-  {'name': 'Anne Fox', 'relation': 'Mother', 'number': '070 7654321'},
-  {'name': 'Anne Fox', 'relation': 'Mother', 'number': '070 7654321'},
+  // {'name': 'Anne Fox', 'relation': 'Mother', 'number': '070 7654321'},
+  // {'name': 'Anne Fox', 'relation': 'Mother', 'number': '070 7654321'},
+  // {'name': 'Anne Fox', 'relation': 'Mother', 'number': '070 7654321'},
+  // {'name': 'Anne Fox', 'relation': 'Mother', 'number': '070 7654321'},
+  // {'name': 'Anne Fox', 'relation': 'Mother', 'number': '070 7654321'},
+  // {'name': 'Anne Fox', 'relation': 'Mother', 'number': '070 7654321'},
 ];
 
 void navigateToPage(BuildContext context, Widget page) {
@@ -115,4 +114,8 @@ void navigateToPage(BuildContext context, Widget page) {
     context,
     MaterialPageRoute(builder: (context) => page),
   );
+}
+
+void callNumber(String number) {
+  launch("tel://$number");
 }

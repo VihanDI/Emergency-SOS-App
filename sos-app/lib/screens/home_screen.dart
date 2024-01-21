@@ -1,7 +1,6 @@
-import 'package:curved_navigation_bar/curved_navigation_bar.dart';
 import 'package:flutter/material.dart';
-import 'disaster_category_screen.dart';
-import '../widgets/app_bar.dart';
+import 'package:flutter_app/widgets/app_bar_default.dart';
+import 'package:flutter_app/widgets/bottom_nav_bar.dart';
 import './login_screeen.dart';
 import './add_number_screen.dart';
 import './emergency_contact_screen.dart';
@@ -60,12 +59,12 @@ class HomeScreen extends StatelessWidget {
         debugShowCheckedModeBanner: false,
         home: Scaffold(
           backgroundColor: Colors.grey[200],
-          appBar: MyAppBar(
-            iconType: Icons.logout_outlined,
-            onPressed: () {
-              navigateToPage(context, const LoginScreen());
-            },
-          ),
+          appBar: const MyAppBarDefault(
+              // iconType: Icons.logout_outlined,
+              // onPressed: () {
+              //   navigateToPage(context, const LoginScreen());
+              // },
+              ),
           body: Center(
               child: Column(
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -73,7 +72,7 @@ class HomeScreen extends StatelessWidget {
               Text(
                 "${currentDate.day}  $month  ${currentDate.year}",
                 style:
-                    const TextStyle(fontSize: 20, fontWeight: FontWeight.w500),
+                    const TextStyle(fontSize: 25, fontWeight: FontWeight.w400),
               ),
               const RoundedContainerTypeOne(height: 168.1),
               const RoundedContainerTypeTwo(height: 90.05),
@@ -93,18 +92,35 @@ class HomeScreen extends StatelessWidget {
               )
             ],
           )),
-          bottomNavigationBar: CurvedNavigationBar(
-              backgroundColor: Colors.grey.shade200,
-              color: const Color(0xFFFF4545),
-              animationDuration: const Duration(milliseconds: 300),
-              onTap: (index) {
-                navigateToPage(context, const DisasterCategoryScreen());
-              },
-              items: const [
-                Icon(
-                  Icons.call,
-                ),
-              ]),
+          bottomNavigationBar: const MyNavBar(),
+          // bottomNavigationBar: CurvedNavigationBar(
+          //     backgroundColor: Colors.grey.shade200,
+          //     color: const Color(0xFFFF4545),
+          //     animationDuration: const Duration(milliseconds: 300),
+          //     onTap: (index) {
+          //       switch (index) {
+          //         case 0:
+          //           navigateToPage(context, const HomeScreen());
+          //           break;
+          //         case 1:
+          //           navigateToPage(context, const DisasterCategoryScreen());
+          //           break;
+          //         case 2:
+          //           _showOptionsPopup(context);
+          //           break;
+          //       }
+          //     },
+          //     items: const [
+          //       Icon(
+          //         Icons.home,
+          //       ),
+          //       Icon(
+          //         Icons.call,
+          //       ),
+          //       Icon(
+          //         Icons.logout,
+          //       ),
+          //     ]),
         ));
   }
 }
@@ -157,10 +173,27 @@ class RoundedContainerTypeOne extends StatelessWidget {
                 decoration: BoxDecoration(
                   color: const Color(0xFFFF6B6B),
                   borderRadius: BorderRadius.circular(0.0),
-                  image: DecorationImage(
-                    image: NetworkImage(url),
-                    fit: BoxFit.cover,
-                  ),
+                ),
+                child: Image.network(
+                  url,
+                  fit: BoxFit.cover,
+                  loadingBuilder: (BuildContext context, Widget child,
+                      ImageChunkEvent? loadingProgress) {
+                    if (loadingProgress == null) {
+                      // Image is fully loaded
+                      return child;
+                    } else {
+                      // Display a loading indicator while the image is loading
+                      return Center(
+                        child: CircularProgressIndicator(
+                          value: loadingProgress.expectedTotalBytes != null
+                              ? loadingProgress.cumulativeBytesLoaded /
+                                  (loadingProgress.expectedTotalBytes ?? 1)
+                              : null,
+                        ),
+                      );
+                    }
+                  },
                 ),
               );
             },
@@ -363,6 +396,35 @@ class CircularIconButton extends StatelessWidget {
       ),
     );
   }
+}
+
+Future<void> _showOptionsPopup(BuildContext context) async {
+  return showDialog<void>(
+    context: context,
+    builder: (BuildContext context) {
+      return AlertDialog(
+        title: const Text(
+          'Are sure you want to logout ?',
+          style: TextStyle(fontSize: 18),
+        ),
+        actions: [
+          TextButton(
+            onPressed: () {
+              Navigator.pop(context); // Close the popup
+              navigateToPage(context, const LoginScreen());
+            },
+            child: const Text('Yes'),
+          ),
+          TextButton(
+            onPressed: () {
+              Navigator.pop(context);
+            }, // Close the popup
+            child: const Text('No'),
+          ),
+        ],
+      );
+    },
+  );
 }
 
 void navigateToPage(BuildContext context, Widget page) {

@@ -94,7 +94,10 @@ Future<void> _showOptionsPopup(
     context: context,
     builder: (BuildContext context) {
       return AlertDialog(
-        title: const Text('Call or Send Message'),
+        title: const Text(
+          'Call or Send Message',
+          style: TextStyle(fontSize: 18),
+        ),
         actions: [
           TextButton(
             onPressed: () {

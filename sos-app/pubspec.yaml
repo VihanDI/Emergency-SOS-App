@@ -36,10 +36,11 @@ dependencies:
   cupertino_icons: ^1.0.2
   url_launcher: ^6.2.2
   geolocator: ^10.1.0
-  firebase_auth: ^4.16.0
-
   carousel_slider: ^4.0.0
   curved_navigation_bar: ^1.0.3
+  firebase_core: ^2.24.2
+  firebase_auth: ^4.16.0
+  firebase_ui_auth: ^1.12.1
 
 dev_dependencies:
   flutter_test:
@@ -63,6 +64,7 @@ flutter:
     - android/app/src/main/res/mipmap-xhdpi/icon.png
     - android/app/src/main/res/mipmap-xxhdpi/icon.png
     - assets/signin.png
+    - assets/profile.png
 
   # The following line ensures that the Material Icons font is
   # included with your application, so that you can use the icons in

@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "770812025282",
+    "project_id": "emergencysos-10bab",
+    "storage_bucket": "emergencysos-10bab.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:770812025282:android:13093c91f4c25b92099e5b",
+        "android_client_info": {
+          "package_name": "com.example.flutter_app"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAtONjunX-cNVwnbywBrCHOX4ZvwxRrYg8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -69,7 +69,7 @@ class AddNumberScreen extends StatelessWidget {
                   padding: const EdgeInsets.symmetric(vertical: 4.0),
                   child: ElevatedButton(
                     onPressed: () {
-                      print("Number Saved!");
+                      _showOptionsPopup(context);
                     },
                     style: ElevatedButton.styleFrom(
                       foregroundColor: Colors.black,
@@ -97,6 +97,29 @@ class AddNumberScreen extends StatelessWidget {
       ),
     );
   }
+}
+
+Future<void> _showOptionsPopup(BuildContext context) async {
+  return showDialog<void>(
+    context: context,
+    builder: (BuildContext context) {
+      return AlertDialog(
+        title: const Text(
+          'Contact Saved Successfully!',
+          style: TextStyle(fontSize: 18),
+        ),
+        actions: [
+          TextButton(
+            onPressed: () {
+              Navigator.pop(context); // Close the popup
+              navigateToPage(context, const HomeScreen());
+            },
+            child: const Text('OK'),
+          ),
+        ],
+      );
+    },
+  );
 }
 
 void navigateToPage(BuildContext context, Widget page) {
