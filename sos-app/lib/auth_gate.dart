@@ -18,12 +18,12 @@ class AuthGate extends StatelessWidget {
             ],
             headerBuilder: (context, constraints, shrinkOffset) {
               return Padding(
-                padding: const EdgeInsets.all(20),
+                padding: const EdgeInsets.all(40),
                 child: AspectRatio(
                   aspectRatio: 1,
                   child: Image.asset(
-                    'assets/signin.png',
-                    width: 600,
+                    'assets/profile.png',
+                    width: 100,
                   ),
                 ),
               );
@@ -45,15 +45,15 @@ class AuthGate extends StatelessWidget {
                 ),
               );
             },
-            sideBuilder: (context, shrinkOffset) {
-              return Padding(
-                padding: const EdgeInsets.all(20),
-                child: AspectRatio(
-                  aspectRatio: 1,
-                  child: Image.asset('flutterfire_300x.png'),
-                ),
-              );
-            },
+            // sideBuilder: (context, shrinkOffset) {
+            //   return Padding(
+            //     padding: const EdgeInsets.all(20),
+            //     child: AspectRatio(
+            //       aspectRatio: 1,
+            //       child: Image.asset('flutterfire_300x.png'),
+            //     ),
+            //   );
+            // },
           );
         }
         return const HomeScreen();

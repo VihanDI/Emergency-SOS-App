@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:curved_navigation_bar/curved_navigation_bar.dart';
 import 'package:flutter_app/screens/disaster_category_screen.dart';
+import 'package:flutter_app/screens/home_screen.dart';
 import 'package:flutter_app/screens/sign_out_screen.dart';
 
 class MyNavBar extends StatelessWidget implements PreferredSizeWidget {
@@ -17,21 +18,21 @@ class MyNavBar extends StatelessWidget implements PreferredSizeWidget {
         animationDuration: const Duration(milliseconds: 300),
         onTap: (index) {
           switch (index) {
-            // case 0:
-            //   navigateToPage(context, const HomeScreen());
-            //   break;
             case 0:
-              navigateToPage(context, const DisasterCategoryScreen());
+              navigateToPage(context, const HomeScreen());
               break;
             case 1:
+              navigateToPage(context, const DisasterCategoryScreen());
+              break;
+            case 2:
               _showOptionsPopup(context);
               break;
           }
         },
         items: const [
-          // Icon(
-          //   Icons.home,
-          // ),
+          Icon(
+            Icons.home,
+          ),
           Icon(
             Icons.call,
           ),

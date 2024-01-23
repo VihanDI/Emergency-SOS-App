@@ -54,8 +54,8 @@ class SignOut extends StatelessWidget {
             Padding(
               padding: const EdgeInsets.symmetric(vertical: 50.0),
               child: Image.asset(
-                'assets/profile.png',
-                width: 80,
+                'assets/signin.png',
+                width: 300,
               ),
             ),
             const Padding(
